@@ -11,14 +11,16 @@ namespace CsvReader
             {
                 List<FordEscort> fordEscorts = new List<FordEscort>();
 
-                string headerLine = reader.ReadLine();
+                // skip the header line
+                string? headerLine = reader.ReadLine();
+                
                 while(!reader.EndOfStream)
                 {
-                    string line = reader.ReadLine();
+                    string? line = reader.ReadLine();
 
-                    var csValues = line.Split(',');
+                    var columns = line.Split(',');
 
-                    fordEscorts.Add(new FordEscort(csValues[0].Trim(), csValues[1].Trim(), csValues[2].Trim()));                    
+                    fordEscorts.Add(new FordEscort(columns[0].Trim(), columns[1].Trim(), columns[2].Trim()));                    
                 }
             }
         }
